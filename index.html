@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𝗡𝗢𝗡𝗦𝗧𝗢𝗣 𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦 𝗖𝗬𝗕𝗘𝗥 𝗙𝗢𝗥𝗖𝗘 - Join Us</title>
+  <style>
+    :root {
+      --neon-green: #00ff88;
+      --neon-cyan: #00e5ff;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --black: #050807;
+      --dark-card: rgba(10, 16, 14, 0.92);
+      --input-bg: rgba(16, 26, 22, 0.9);
+      --border-dim: rgba(0, 255, 136, 0.25);
+      --text: #d8f3e6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--black);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 255, 136, 0.14), transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(0, 229, 255, 0.08), transparent 45%),
+        linear-gradient(rgba(0, 255, 136, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle scanline overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.22) 3px,
+        rgba(0, 0, 0, 0.22) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: 24px 16px;
+      padding: 30px;
+      background-color: var(--dark-card);
+      border: 1px solid rgba(0, 255, 136, 0.55);
+      border-radius: 12px;
+      box-shadow:
+        0 0 25px rgba(0, 255, 136, 0.14),
+        0 0 50px rgba(0, 229, 255, 0.06),
+        inset 0 0 20px rgba(0, 255, 136, 0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      color: var(--neon-green);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed rgba(0, 255, 136, 0.25);
+      letter-spacing: 0.5px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .logo-container img {
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+      border: 2px solid var(--neon-green);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.35);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--neon-green);
+      text-shadow: 0 0 12px rgba(0, 255, 136, 0.35);
+      margin: 0 0 8px 0;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #88a899;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .rules-section {
+      background-color: rgba(0, 255, 136, 0.04);
+      border: 1px solid var(--border-dim);
+      border-left: 4px solid var(--neon-green);
+      padding: 15px 16px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+    }
+
+    .rules-section h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--neon-cyan);
+      font-size: 15px;
+      letter-spacing: 0.4px;
+    }
+
+    .rules-section ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #c7e5d7;
+    }
+
+    .rules-section li {
+      margin-bottom: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--neon-green);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--border-dim);
+      background-color: var(--input-bg);
+      color: #eafff5;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #5e7d6f;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--neon-green);
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 85px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .radio-option {
+      flex: 1;
+    }
+
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+
+    .radio-option label {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-dim);
+      border-radius: 6px;
+      cursor: pointer;
+      color: #cce8da;
+      transition: all 0.25s;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      background-color: var(--neon-green);
+      color: #04100a;
+      font-weight: bold;
+      border-color: var(--neon-green);
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.35);
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-input-btn {
+      border: 2px dashed rgba(0, 255, 136, 0.55);
+      color: var(--neon-green);
+      background-color: var(--input-bg);
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      display: block;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .file-input-btn:hover {
+      background-color: rgba(0, 255, 136, 0.08);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    .file-input-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(90deg, #00e676, #00b0ff);
+      color: #04100a;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.25s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.4);
+    }
+
+    .submit-btn:disabled {
+      background: #2b3a33;
+      color: #7b9387;
+      box-shadow: none;
+      transform: none;
+      cursor: not-allowed;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 255, 136, 0.2);
+    }
+
+    .social-links a {
+      color: var(--neon-green);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+
+    .social-links a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="terminal-bar">
+      <div class="dots">
+        <span class="dot-red"></span>
+        <span class="dot-yellow"></span>
+        <span class="dot-green"></span>
+      </div>
+      <span>root@cyber-force:~# ./recruit.sh</span>
+    </div>
+
+    <div class="logo-container">
+      
+    </div>
+
+    <h1>𝗡𝗢𝗡𝗦𝗧𝗢𝗣 𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦 𝗖𝗬𝗕𝗘𝗥 𝗙𝗢𝗥𝗖𝗘</h1>
+    <p class="subtitle">অফিসিয়াল টিম মেম্বার রিক্রুটমেন্ট ফর্ম</p>
+
+    <div class="rules-section">
+      <h3>⚠️ টিমের নিয়মাবলী (Rules)</h3>
+      <ul>
+        <li>টিমের অভ্যন্তরীন কোনো গোপন তথ্য বাইরে প্রকাশ করা সম্পূর্ণ নিষেধ।</li>
+        <li>সব সময় টিমের সিনিয়র ও সহকর্মীদের প্রতি সম্মান বজায় রাখতে হবে।</li>
+        <li>কোনো প্রকার অবৈধ বা ক্ষতিকারক কাজে টিমের নাম ব্যবহার করা যাবে না।</li>
+        <li>টিমের মিটিং ও যেকোনো অ্যাক্টিভিটিতে সক্রিয় থাকতে হবে।</li>
+      </ul>
+    </div>
+
+    <form id="joinForm">
+      <div class="form-group">
+        <label for="name">নাম</label>
+        <input type="text" id="name" required placeholder="আপনার পূর্ণ নাম লিখুন">
+      </div>
+
+      <div class="form-group">
+        <label for="age">বয়স</label>
+        <input type="number" id="age" required placeholder="আপনার বয়স">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">জন্ম তারিখ</label>
+        <input type="date" id="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">ঠিকানা (স্থায়ী)</label>
+        <input type="text" id="address" required placeholder="স্থায়ী ঠিকানা">
+      </div>
+
+      <div class="form-group">
+        <label for="current_address">বর্তমান ঠিকানা</label>
+        <input type="text" id="current_address" required placeholder="বর্তমান ঠিকানা">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">আপনার মোবাইল নম্বর</label>
+        <input type="tel" id="phone" required placeholder="017xxxxxxxx">
+      </div>
+
+      <div class="form-group">
+        <label for="email">আপনার ইমেইল</label>
+        <input type="email" id="email" required placeholder="example@gmail.com">
+      </div>
+
+      <div class="form-group">
+        <label>আগে কোনো টিমে ছিলেন?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="prev_team_yes" name="previous_team" value="হ্যাঁ">
+            <label for="prev_team_yes">হ্যাঁ</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="prev_team_no" name="previous_team" value="না" checked>
+            <label for="prev_team_no">না</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reason">আপনি কেন Join হচ্ছেন?</label>
+        <textarea id="reason" required placeholder="সংক্ষেপে আপনার কারণ লিখুন..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>ছবি আপলোড করুন</label>
+        <div class="file-input-wrapper">
+          <button class="file-input-btn" type="button" id="fileLabel">📸 ছবি তুলে দিন / পিক আপলোড করুন</button>
+          <input type="file" id="photo" accept="image/*" capture="user" onchange="updateFileName(this)">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">JOIN NOW</button>
+    </form>
+
+    <div class="social-links">
+      <a href="#" target="_blank">Telegram</a>
+      <a href="#" target="_blank">Facebook Page</a>
+      <a href="#" target="_blank">Facebook Group</a>
+    </div>
+  </div>
+
+  <script>
+    function updateFileName(input) {
+      const fileLabel = document.getElementById('fileLabel');
+      if (input.files && input.files[0]) {
+        fileLabel.innerText = "ছবি সিলেক্ট হয়েছে: " + input.files[0].name;
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    // server.txt থেকে BOT_TOKEN এবং CHAT_ID নেওয়ার ফাংশন
+    async function getServerCredentials() {
+      try {
+        const response = await fetch('server.txt');
+        if (!response.ok) throw new Error('server.txt ফাইলটি পাওয়া যায়নি');
+
+        const text = await response.text();
+        const credentials = {};
+
+        text.split(/\r?\n/).forEach(line => {
+          const trimmed = line.trim();
+          if (!trimmed || trimmed.startsWith('#')) return;
+          const idx = trimmed.indexOf('=');
+          if (idx > 0) {
+            const key = trimmed.slice(0, idx).trim();
+            const val = trimmed.slice(idx + 1).trim();
+            credentials[key] = val;
+          }
+        });
+
+        return credentials;
+      } catch (error) {
+        console.error("Credentials error:", error);
+        return null;
+      }
+    }
+
+    document.getElementById('joinForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.innerText = "পাঠানো হচ্ছে...";
+      submitBtn.disabled = true;
+
+      const creds = await getServerCredentials();
+      if (!creds || !creds.BOT_TOKEN || !creds.CHAT_ID) {
+        alert('server.txt ফাইল থেকে Token বা Chat ID সেট করা সম্ভব হয়নি!');
+        submitBtn.innerText = "JOIN NOW";
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const BOT_TOKEN =9289842401:AAGNTDH4shUqUzAzIACYzAa_f4gmZb_fu-4;
+      const CHAT_ID =7769151733;
+
+      const name = escapeHtml(document.getElementById('name').value);
+      const age = escapeHtml(document.getElementById('age').value);
+      const dob = escapeHtml(document.getElementById('dob').value);
+      const address = escapeHtml(document.getElementById('address').value);
+      const currentAddress = escapeHtml(document.getElementById('current_address').value);
+      const phone = escapeHtml(document.getElementById('phone').value);
+      const email = escapeHtml(document.getElementById('email').value);
+      const prevTeam = escapeHtml(document.querySelector('input[name="previous_team"]:checked').value);
+      const reason = escapeHtml(document.getElementById('reason').value);
+      const photoInput = document.getElementById('photo');
+
+      const captionMessage =
+`🔥 <b>𝗡𝗢𝗡𝗦𝗧𝗢𝗣 𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦 𝗖𝗬𝗕𝗘𝗥 𝗙𝗢𝗥𝗖𝗘</b> 🔥
+
+👤 <b>নাম:</b> ${name}
+🎂 <b>বয়স:</b> ${age}
+📅 <b>জন্ম তারিখ:</b> ${dob}
+🏠 <b>স্থায়ী ঠিকানা:</b> ${address}
+📍 <b>বর্তমান ঠিকানা:</b> ${currentAddress}
+📞 <b>মোবাইল:</b> ${phone}
+✉️ <b>ইমেইল:</b> ${email}
+🛡️ <b>আগে কোনো টিমে ছিলেন:</b> ${prevTeam}
+📝 <b>কারণ:</b> ${reason}`;
+
+      try {
+        if (photoInput.files && photoInput.files[0]) {
+          const formData = new FormData();
+          formData.append("chat_id", CHAT_ID);
+          formData.append("caption", captionMessage);
+          formData.append("parse_mode", "HTML");
+          formData.append("photo", photoInput.files[0]);
+
+          const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: "POST",
+            body: formData
+          });
+
+          const result = await response.json();
+
+          if (result.ok) {
+            alert('আপনার আবেদন সফলভাবে জমা দেওয়া হয়েছে!');
+            document.getElementById('joinForm').reset();
+            document.getElementById('fileLabel').innerText = "📸 ছবি তুলে দিন / পিক আপলোড করুন";
+          } else {
+            alert('আবেদন পাঠাতে ব্যর্থ হয়েছে! server.txt ফাইলের Token বা Chat ID সঠিক কিনা দেখুন।');
+          }
+        } else {
+          const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: captionMessage,
+              parse_mode: "HTML"
+            })
+          });
+
+          const result = await response.json();
+
+          if (result.ok) {
+            alert('আপনার আবেদন সফলভাবে জমা দেওয়া হয়েছে!');
+            document.getElementById('joinForm').reset();
+          } else {
+            alert('আবেদন পাঠাতে ব্যর্থ হয়েছে!');
+          }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert('ইন্টারনেট বা সার্ভারে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+      } finally {
+        submitBtn.innerText = "JOIN NOW";
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
